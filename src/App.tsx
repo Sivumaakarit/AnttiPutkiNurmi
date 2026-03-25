@@ -19,7 +19,9 @@ import {
   Wind,
   Thermometer,
   Wrench,
-  ArrowRight
+  ArrowRight,
+  Facebook,
+  Instagram
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { clsx, type ClassValue } from 'clsx';
@@ -227,7 +229,7 @@ export default function App() {
         <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-slate-900">
           <div className="absolute inset-0 z-0">
             <img
-              src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=2070"
+              src="/images/hero.webp"
               alt="Laadukasta LVI-asennusta ja putkitöitä"
               width={1920}
               height={1080}
@@ -473,7 +475,7 @@ export default function App() {
                   )}
                   <div className="space-y-4">
                     <div className="flex justify-between items-end">
-                      <label className="text-sm font-bold uppercase tracking-wider text-slate-400">Vuosikulutus (kWh)</label>
+                      <label className="text-sm font-bold uppercase tracking-wider text-slate-300">Vuosikulutus (kWh)</label>
                       <div className="text-right">
                         <span className="text-3xl font-bold text-emerald-400">{consumption.toLocaleString('fi-FI')}</span>
                         <span className="text-emerald-400/60 ml-2 font-bold">kWh</span>
@@ -485,6 +487,7 @@ export default function App() {
                       max="35000"
                       step="100"
                       value={consumption}
+                      aria-label="Vuosikulutus kilowattitunteina"
                       onChange={(e) => {
                         setConsumption(parseInt(e.target.value));
                         setIsCalculating(true);
@@ -492,7 +495,7 @@ export default function App() {
                       }}
                       className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-emerald-400"
                     />
-                    <div className="flex justify-between text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+                    <div className="flex justify-between text-[10px] font-bold text-slate-300 uppercase tracking-widest">
                       <span>2 000 kWh</span>
                       <span>35 000 kWh</span>
                     </div>
@@ -500,17 +503,17 @@ export default function App() {
 
                   <div className="grid grid-cols-2 gap-4 pt-6 border-t border-white/10">
                     <div>
-                      <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Nykyinen kulu</div>
+                      <div className="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-1">Nykyinen kulu</div>
                       <div className="text-xl font-bold">{Math.round(currentCost).toLocaleString('fi-FI')} € / vuosi</div>
                     </div>
                     <div className="text-right">
-                      <div className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-1">Uusi arvioitu kulu</div>
+                      <div className="text-[10px] font-bold text-emerald-300 uppercase tracking-widest mb-1">Uusi arvioitu kulu</div>
                       <div className="text-xl font-bold text-emerald-400">{Math.round(currentCost - maxSavings).toLocaleString('fi-FI')} - {Math.round(currentCost - minSavings).toLocaleString('fi-FI')} €</div>
                     </div>
                   </div>
 
                   <div className="pt-6 border-t border-white/10">
-                    <div className="text-sm text-slate-400 mb-2 uppercase font-bold tracking-widest">Arvioitu vuosisäästö:</div>
+                    <div className="text-sm text-slate-300 mb-2 uppercase font-bold tracking-widest">Arvioitu vuosisäästö:</div>
                     <div className="text-5xl font-bold text-emerald-400">
                       {Math.round(minSavings).toLocaleString('fi-FI')} - {Math.round(maxSavings).toLocaleString('fi-FI')} €
                     </div>
@@ -833,36 +836,40 @@ export default function App() {
             <a href="#evasteet" className="hover:text-brand-accent transition-colors" aria-label="Lue evästekäytännöt">Evästeet</a>
           </div>
           <div className="flex gap-4">
-            <div
-              role="button"
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Seuraa meitä Facebookissa"
-              className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-brand-primary hover:border-brand-primary transition-all cursor-pointer"
+              className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-500 hover:text-brand-primary hover:border-brand-primary transition-all transition-colors"
             >
-              <span className="font-bold" aria-hidden="true">f</span>
-            </div>
-            <div
-              role="button"
-              aria-label="Seuraa meitä LinkedInissä"
-              className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-brand-primary hover:border-brand-primary transition-all cursor-pointer"
+              <Facebook size={18} />
+            </a>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Seuraa meitä Instagramissa"
+              className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-500 hover:text-brand-primary hover:border-brand-primary transition-all transition-colors"
             >
-              <span className="font-bold" aria-hidden="true">in</span>
-            </div>
+              <Instagram size={18} />
+            </a>
           </div>
         </div>
 
         {/* Certification Logos */}
         <div className="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-slate-200 flex flex-wrap justify-center items-center gap-12 opacity-50 grayscale hover:grayscale-0 transition-all">
-          <div className="flex items-center gap-2 font-bold text-slate-400">
-            <ShieldCheck size={24} /> AA-LUOTTOLUOKITUS
+          <div className="flex items-center gap-2 font-bold text-slate-600">
+            <ShieldCheck size={24} className="text-brand-accent" /> AA-LUOTTOLUOKITUS
           </div>
-          <div className="flex items-center gap-2 font-bold text-slate-400">
-            <CheckCircle2 size={24} /> LUOTETTAVA KUMPPANI
+          <div className="flex items-center gap-2 font-bold text-slate-600">
+            <CheckCircle2 size={24} className="text-brand-accent" /> LUOTETTAVA KUMPPANI
           </div>
-          <div className="flex items-center gap-2 font-bold text-slate-400">
-            <Wrench size={24} /> LVI-TUOTE JÄSEN
+          <div className="flex items-center gap-2 font-bold text-slate-600">
+            <Wrench size={24} className="text-brand-accent" /> LVI-TUOTE JÄSEN
           </div>
-          <div className="flex items-center gap-2 font-bold text-slate-400 italic">
-            SUOMALAISTA PALVELUA
+          <div className="flex items-center gap-3 font-extrabold text-brand-primary tracking-tighter text-lg">
+            <span className="bg-brand-accent text-white px-2 py-0.5 rounded text-sm mb-1">FI</span> SUOMALAISTA PALVELUA
           </div>
         </div>
       </footer>
