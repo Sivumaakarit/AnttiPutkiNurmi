@@ -1,0 +1,38 @@
+{
+    "company": {
+        "name": "Antti PutkiNurmi",
+        "legalName": "Antti PutkiNurmi Oy",
+        "yTunnus": "2345678-9",
+        "logoUrl": "images/logo.png",
+        "faviconUrl": "images/favicon.ico",
+        "tagline": "Putkiasennukset ja LVI-huollot ammattitaidolla – Jotta putket eivät vain kestä, vaan koko koti kukoistaa."
+    },
+    "branding": {
+        "colors": {
+            "primary": "#064E3B",
+            "accent": "#10B981",
+            "accentRgb": "16, 185, 129"
+        },
+        "fonts": {
+            "heading": "'Sora', sans-serif",
+            "body": "'Plus Jakarta Sans', sans-serif"
+        }
+    },
+    "contact": {
+        "phone": "045 987 6543",
+        "email": "antti@putkinurmi.fi",
+        "address": "Apilatakuja 5, 01300 Vantaa",
+        "serviceArea": "Etelä-Suomi",
+        "responseTime": "3h"
+    },
+    "socialProof": {
+        "google": {
+            "rating": "4.9",
+            "count": "30+"
+        }
+    },
+    "integrations": {
+        "ghlFormId": "FORM_ID_HERE",
+        "googleTagManager": "GTM-XXXXXX"
+    }
+}
