@@ -122,6 +122,25 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string, closeMenu = false) => {
+    e.preventDefault();
+    if (closeMenu) setIsMenuOpen(false);
+
+    // Give a small delay if the menu is closing to allow DOM to settle
+    const delay = closeMenu ? 10 : 0;
+    
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, delay);
+  };
+
+  const handleMobileLinkClick = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* Toast Notification */}
@@ -185,10 +204,10 @@ export default function App() {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#palvelut" className="font-medium hover:text-brand-accent transition-colors">Palvelut</a>
-            <a href="#hinnasto" className="font-medium hover:text-brand-accent transition-colors">Hinnasto</a>
-            <a href="#meista" className="font-medium hover:text-brand-accent transition-colors">Meistä</a>
-            <a href="#yhteys" className="btn-primary py-2 px-5 text-sm">
+            <a href="#palvelut" onClick={(e) => scrollToSection(e, 'palvelut')} className="font-medium hover:text-brand-accent transition-colors">Palvelut</a>
+            <a href="#hinnasto" onClick={(e) => scrollToSection(e, 'hinnasto')} className="font-medium hover:text-brand-accent transition-colors">Hinnasto</a>
+            <a href="#meista" onClick={(e) => scrollToSection(e, 'meista')} className="font-medium hover:text-brand-accent transition-colors">Meistä</a>
+            <a href="#yhteys" onClick={(e) => scrollToSection(e, 'yhteys')} className="btn-primary py-2 px-5 text-sm">
               Pyydä tarjous
             </a>
           </div>
@@ -211,13 +230,13 @@ export default function App() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-white border-t border-slate-100 overflow-hidden"
+              className="md:hidden absolute top-full left-0 right-0 bg-white border-t border-slate-100 shadow-xl overflow-hidden"
             >
               <div className="flex flex-col p-6 gap-4">
-                <a href="#palvelut" onClick={() => setIsMenuOpen(false)} className="text-lg font-medium">Palvelut</a>
-                <a href="#hinnasto" onClick={() => setIsMenuOpen(false)} className="text-lg font-medium">Hinnasto</a>
-                <a href="#meista" onClick={() => setIsMenuOpen(false)} className="text-lg font-medium">Meistä</a>
-                <a href="#yhteys" onClick={() => setIsMenuOpen(false)} className="btn-primary w-full">Ota yhteyttä</a>
+                <a href="#palvelut" onClick={(e) => scrollToSection(e, 'palvelut', true)} className="text-lg font-medium py-2 border-b border-slate-50">Palvelut</a>
+                <a href="#hinnasto" onClick={(e) => scrollToSection(e, 'hinnasto', true)} className="text-lg font-medium py-2 border-b border-slate-50">Hinnasto</a>
+                <a href="#meista" onClick={(e) => scrollToSection(e, 'meista', true)} className="text-lg font-medium py-2 border-b border-slate-50">Meistä</a>
+                <a href="#yhteys" onClick={(e) => scrollToSection(e, 'yhteys', true)} className="btn-primary w-full mt-4">Ota yhteyttä</a>
               </div>
             </motion.div>
           )}
@@ -262,10 +281,10 @@ export default function App() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#yhteys" className="btn-primary text-lg px-8">
+                <a href="#yhteys" onClick={(e) => scrollToSection(e, 'yhteys')} className="btn-primary text-lg px-8">
                   Pyydä maksuton arvio <ArrowRight size={20} />
                 </a>
-                <a href="#palvelut" className="btn-secondary bg-transparent border-white text-white hover:bg-white hover:text-brand-primary text-lg px-8">
+                <a href="#hinnasto" onClick={(e) => scrollToSection(e, 'hinnasto')} className="btn-secondary bg-transparent border-white text-white hover:bg-white hover:text-brand-primary text-lg px-8">
                   Katso hinnasto
                 </a>
               </div>
@@ -274,7 +293,7 @@ export default function App() {
         </section>
 
         {/* Services Section */}
-        <section id="palvelut" className="section-padding scroll-mt-24">
+        <section id="palvelut" className="section-padding">
           <div className="text-center mb-16">
             <h2 className="text-sm font-bold text-brand-accent uppercase tracking-widest mb-3">LVI-palvelumme</h2>
             <h3 className="text-4xl md:text-5xl font-bold mb-6">Kattavat LVI-ratkaisut Etelä-Suomen alueella</h3>
@@ -416,7 +435,7 @@ export default function App() {
         </section>
 
         {/* Entrepreneur's Word Section */}
-        <section id="meista" className="section-padding grid lg:grid-cols-2 gap-16 items-center border-b border-slate-100 scroll-mt-24">
+        <section id="meista" className="section-padding grid lg:grid-cols-2 gap-16 items-center border-b border-slate-100">
           <div>
             <h2 className="text-sm font-bold text-brand-accent uppercase tracking-widest mb-3">Yrittäjän sana</h2>
             <h3 className="text-4xl font-bold mb-6 text-brand-primary">"Rehellisyys on paras mainos"</h3>
@@ -549,7 +568,7 @@ export default function App() {
         </section>
 
         {/* Pricing Section */}
-        <section id="hinnasto" className="section-padding scroll-mt-24">
+        <section id="hinnasto" className="section-padding">
           <div className="text-center mb-16">
             <h2 className="text-sm font-bold text-brand-accent uppercase tracking-widest mb-3">LVI-hinnasto</h2>
             <h3 className="text-4xl md:text-5xl font-bold mb-6">Selkeä ja reilu hinnoittelu</h3>
@@ -711,7 +730,7 @@ export default function App() {
         </section>
 
         {/* Contact Section */}
-        <section id="yhteys" className="section-padding scroll-mt-24">
+        <section id="yhteys" className="section-padding">
           <div className="bg-white rounded-[3rem] shadow-2xl overflow-hidden border border-slate-100">
             <div className="grid lg:grid-cols-2">
               <div className="p-6 md:p-16">

@@ -14,12 +14,17 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 100px;
+    scroll-padding-top: 80px;
+  }
+
+  section {
+    scroll-margin-top: 100px;
   }
 
   body {
     @apply font-sans text-brand-primary bg-brand-light antialiased;
   }
+
 
   h1,
   h2,
