@@ -899,6 +899,9 @@ export default function App() {
           <Phone size={20} /> Soita heti
         </a>
       </div>
+      
+      {/* Vercel Web Analytics */}
+      <Analytics />
     </div>
   );
 }
